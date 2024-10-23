@@ -10,6 +10,7 @@ services:
     command: --replSet rs0 --bind_ip_all
     volumes:
       - ./scripts:/scripts
+      - mongo1-data:/data/db
 
   mongo2:
     image: mongo:latest
@@ -21,6 +22,7 @@ services:
     command: --replSet rs0 --bind_ip_all
     volumes:
       - ./scripts:/scripts
+      - mongo2-data:/data/db
 
   mongo3:
     image: mongo:latest
@@ -32,7 +34,13 @@ services:
     command: --replSet rs0 --bind_ip_all
     volumes:
       - ./scripts:/scripts
+      - mongo3-data:/data/db
 
 networks:
   mongo-cluster:
     driver: bridge
+
+volumes:
+  mongo1-data:
+  mongo2-data:
+  mongo3-data:
